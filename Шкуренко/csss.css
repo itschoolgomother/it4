@@ -1,0 +1,38 @@
+.main-menu{
+	list-style-type: none;
+	width: 200px;
+	position: relative;
+}
+.main-menu a{
+	text-decoration: none;
+	background-color: #4d4de6;
+	display: block;
+	font-size: 20px;
+	border:1px solid black;
+	margin-bottom: 1px;
+	padding: 5px 10px;
+	color:#d841e0;
+	font-weight: bold;
+	text-transform: capitalize;
+
+}
+.sub-menu{
+	text-decoration: none;
+	list-style-type: none;
+	display: none;
+	position: absolute;
+	left: 200px;
+	top: 50px;
+}
+.active:hover .sub-menu{
+	display: block;
+}
+.sub-menu a:hover{
+	background-color: yellow;
+	color: green;
+	text-decoration: underline;
+}
+.main-menu a:hover{
+	background-color: red;
+	color: blue;
+}

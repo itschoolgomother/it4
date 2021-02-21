@@ -1,0 +1,24 @@
+body{
+	background-image: url(ff.jpg);
+	background-repeat: no-repeat;
+	height: 100vh;
+	width: 100vw;
+	background-size:  100% 100%;
+	background-attachment: fixed;
+	position: fixed;
+	top: 0;
+	left: 0;
+	display: flex;
+	align-items: center;
+	align-content: center;
+	justify-content: center;
+	overflow: auto;	
+}
+#key{
+	background-color: black; 
+	width:100px;
+	height:50px;
+	color: white;
+	font-size: 30px;
+	font-weight:bold;
+}	

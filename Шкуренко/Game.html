@@ -1,0 +1,177 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title></title>
+	<link rel="stylesheet" type="text/css" href="Game.css">
+</head>
+<body>
+	<div></div>
+	<div></div>
+	<img src="ss.png" id="hero">
+	<div id="coin"></div>
+	<div id="score"></div>
+	<img src="kill.png" id="pic">
+	<div id="restart">restart</div>
+	<script type="text/javascript">
+		let x = 0;
+		let y = 0;
+		let keyRight = false;
+		let keyLeft = false;
+		let keyBottom = false;
+		let keyTop = false;
+		let heroHeight = 200;
+		let heroWidth = 250;
+		let show = "block";
+		let score = 0;
+		let arr = 0;
+		coin.style.display = show;
+		let intersection = function(a,b){
+			return a.top + a.height >= b.top &&
+			b.top + b.height >= a.top &&
+			a.left + a.width >= b.left &&
+			b.left + b.width >= a.left;
+		}
+		let res = 0;
+		restart.onclick = function(){
+			document.location.reload();
+			
+		}
+		let colors = ["red","brown","indigo","cyan","black"];
+		let bx = 0;
+		let by = 300;
+		let bx1 = 4;
+		let by1 = 4;
+		
+		
+
+		hero.style.width = heroWidth + "px"
+		hero.style.height = heroHeight + "px"
+		coin.style.left = Math.random() * window.innerWidth + "px"
+		coin.style.top = Math.random() * window.innerHeight + "px"
+
+		document.addEventListener("keydown",keyPressed,false);
+		document.addEventListener("keyup",keyUnpressed,false);
+
+		function keyPressed(e){
+			
+			if(e.keyCode == 68){
+				keyRight = true;
+
+			}
+			if(e.keyCode == 65){
+				keyLeft = true;
+			}
+			if(e.keyCode == 83){
+				keyBottom = true;
+			}
+			if(e.keyCode == 87)
+				keyTop = true;
+		}
+
+		function keyUnpressed(e){
+			if(e.keyCode == 68){
+				keyRight = false;
+			}
+			if(e.keyCode ==65){
+				keyLeft = false;
+			}
+			if(e.keyCode == 83){
+				keyBottom = false
+			}
+			if(e.keyCode == 87){
+				keyTop = false
+			}
+		}
+
+
+		function game(){
+			bx += bx1;
+			by += by1;
+			pic.style.top = by + "px";
+			pic.style.left = bx + "px";
+			if (by >= window.innerHeight - pic.height || by<= 0  ) {
+				by1 = -by1;
+			}else if (bx >= window.innerWidth - pic.width || bx<= 0 ) {
+				bx1 = -bx1;
+			}
+			switch(score){
+				case 10:
+				coin.style.backgroundColor = colors [0];
+				break;
+
+				case 20:
+				coin.style.backgroundColor = colors [1];
+				break;
+
+				case 30:
+				coin.style.backgroundColor = colors [2];
+				break;
+
+				case 40:
+				coin.style.backgroundColor = colors [3];
+				break;
+
+				case 50:
+				coin.style.backgroundColor = colors [4];
+				break;
+			}
+			// score == 10 ? coin.style.backgroundColor = colors[0];
+
+			
+			if (keyRight && res < 1) {
+				x+=5;
+				hero.style.left = x+"px"
+				if (x >= window.innerWidth - heroWidth) {
+					x -= 5;
+				}
+			}
+			if (keyLeft && res < 1) {
+				x-=5;
+				hero.style.left = x+"px"
+				if (x <= 0) {
+					x += 5;
+				}
+			}
+			if (keyBottom && res < 1) {
+				y+=5;
+				hero.style.top = y+"px"
+				if (y >= window.innerHeight - heroHeight ) {
+					y -= 5;
+				}
+			}
+			if (keyTop && res < 1		){
+				y-=5;
+				hero.style.top = y+"px"
+				if (y <= 0) {
+					y += 5;
+				}
+			}
+
+		let box = hero.getBoundingClientRect()
+		let box1 = coin.getBoundingClientRect()
+		let box2 = pic.getBoundingClientRect()
+
+		if (intersection(box,box2)) {
+			res++;
+			restart.style.display = "block"
+		}
+		if (intersection(box,box1)) {
+			show = "none";
+			coin.style.display = show;
+			if (show == "none") {
+				show = "block";
+				coin.style.display = show;
+				score += 1;
+			 	
+				document.getElementById("score").innerHTML = "score: " + score;
+		coin.style.left = Math.random() * window.innerWidth + "px"
+		coin.style.top = Math.random() * window.innerHeight + "px"
+			}
+		}
+
+		requestAnimationFrame(game);		
+		}
+		requestAnimationFrame(game);
+	</script>
+</body>
+</html>

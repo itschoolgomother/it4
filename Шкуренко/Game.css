@@ -1,0 +1,40 @@
+#hero{
+	height: 200px;
+	width:250px;
+	background-color: blue;
+	position: absolute;
+}
+#coin{
+	height: 65px;
+	width: 65px;
+	background-color: yellow;
+	border-radius: 50%;
+	position: absolute;
+}
+#score{
+	height: 55px;
+	width: 115px;
+	border:1px solid black;
+	color: red;
+	font-size: 30px;
+	font-family: "mr_Connections_and_Order";
+}
+@font-face{
+	font-family: "mr_Connections_and_Order";
+	src:url("20327.ttf");
+}
+#pic{
+	width: 70px;
+	position: absolute;
+	top: 300px;
+}
+#restart{
+	height: 100px;
+	width: 200px;
+	background-image: linear-gradient(to left, blue,indigo,cyan,red,green,yellow); 
+	margin:0 auto;
+	font-size: 60px;
+	font-family: "mr_Connections_and_Order";
+	display: none;
+	border: 1px solid black;
+}

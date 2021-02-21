@@ -1,0 +1,27 @@
+.box{
+	height: 100px;
+	width: 100px;
+	background-color: red;
+	/*имя анимации*/
+	animation-name: dance;
+	/*продолжительность анимации*/
+	animation-duration: 5s;
+	/*колличество повторений*/
+	 animation-iteration-count: infinite;
+	/*график функции зависмости скорости от прогресса*/
+	animation-timing-function: ease;
+}
+@keyframes dance{
+	20%{
+		background-color:black;
+	}
+40%{
+	border-radius: 50%;
+}
+60%{
+	transform: rotate(360deg);
+}
+80%{
+	border: 5px solid green;
+}
+}

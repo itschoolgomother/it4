@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title></title>
+	<link rel="stylesheet" type="text/css" href="cssss.css">
+</head>
+<body>
+	<span id="ShowHide1">Hide/Show</span>
+	<div id="exemple1"></div>
+
+	<script type="text/javascript">
+		let x = 10;
+		let dx =1;
+		window.onload = function mm(){
+			let a = document.querySelector('#exemple1');
+			x+=dx;
+
+			a.onmouseover = function(e) {
+				let xcoord = Math.random()*x 10;
+				exemple1.style.top = xcoord +'px';
+				exemple1.style.left= xcoord +'px';
+				if(xcoord >= window.innerHeight || xcoord <= 0)
+					{
+						dx = -dx;
+					}
+			};
+			requestAnimationFrame(mm);
+		}
+		requestAnimationFrame(mm);
+		
+	</script>
+</body>
+</html>
