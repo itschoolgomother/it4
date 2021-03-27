@@ -1,0 +1,153 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title></title>
+	<link rel="stylesheet" type="text/css" href="game.css">
+</head>
+<body id="main">
+<div id="hero"></div>
+<div id="coin"></div>
+<div id="sc">$ </div>
+<img src="bomb.png" id="bomb">
+<img src="reset.png" id="reset">
+
+<script type="text/javascript">
+	coin.style.width = "100px";
+	coin.style.height = "100px";
+	coin.style.backgroundColor = "blue";
+	coin.style.position = "absolute";
+	coin.style.left= Math.random()*window.innerWidth-100+"px";
+	coin.style.top= Math.random()*window.innerHeight-100+"px";
+	reset.style.left = window.innerWidth/2-50+ "px";
+	let colors = ["purple", "blue","green", "brown", "pink"]
+	let show = "block";
+	let keyleft = false;
+	let keyright=false;
+	let x = 0;
+	let y = 0;
+	let keyvverh = false;
+	let keyvniz = false;
+	let score = 0;
+	let bx = 0;
+	let by = 200;
+	let bDX = 2;
+	let bDY = 2;
+	let ctrl = 0;
+	document.addEventListener("keydown",nazhato,false);
+	document.addEventListener("keyup",otpustili,false);
+	reset.onclick = function(){
+		document.location.reload()
+	}
+	let intersection = function(a,b){
+		return a.top + a.height >= b.top &&
+		b.top + b.height >= a.top &&
+		a.left + a.width >= b.left &&
+		b.left + b.width>=a.left;
+
+	}
+	function nazhato(e) {
+		if(e.keyCode == 68){
+			keyright = true;
+		}
+		if (e.keyCode == 65) {
+			keyleft = true;
+		}
+		if (e.keyCode == 83) {
+			keyvniz = true;
+		}
+		if (e.keyCode == 87) {
+			keyvverh = true;
+		}
+	}
+
+	function otpustili(e) {
+		if(e.keyCode==68){
+			keyright = false;
+		}
+		if(e.keyCode==65){
+			keyleft = false;
+		}
+		if (e.keyCode == 83) {
+			keyvniz = false;
+		}
+		if (e.keyCode == 87) {
+			keyvverh = false;
+		}
+	}
+
+	function geme(){
+			switch (score){
+				case 10:
+				main.style.backgroundColor = colors[0] 
+				break;
+
+				case 20:
+				main.style.backgroundColor = colors[1]
+				hero.style.backgroundColor = colors[0]
+				// bDX += 5;
+				// bDY += 5;
+				break;
+
+				case 30:
+				main.style.backgroundColor = colors[2] 
+				hero.style.backgroundColor = colors[1]
+				break;
+
+				case 40:
+				main.style.backgroundColor = colors[3]
+				hero.style.backgroundColor = colors[2] 
+				break;
+			}
+		bx += bDX;
+		by += bDY;
+		bomb.style.left = bx + "px";
+		bomb.style.top = by + "px";
+		if (by >= window.innerHeight- bomb.height || by < 0) {
+			bDY = -bDY;
+
+		} else if ( bx >= window.innerWidth- bomb.width || bx < 0) {
+			bDX = -bDX;
+
+		}
+		let box = hero.getBoundingClientRect();
+		let box1 = coin.getBoundingClientRect();
+		let box2 = bomb.getBoundingClientRect()
+		if (intersection(box,box2)) {
+			reset.style.display = "block";
+			ctrl++;
+		}
+		if(intersection(box, box1)){
+			show = "none";
+			coin.style.display = show;
+			score++;
+			sc.innerHTML = "$"+ score;
+			if (show=="none") {
+				show = "block";
+				coin.style.display = show;
+				coin.style.left= Math.random()*window.innerWidth-100+"px";
+				coin.style.top= Math.random()*window.innerHeight-100+"px";
+			}
+		}
+		if (keyright && ctrl < 1) {
+			x+=5;
+			hero.style.left = x + "px";
+		}
+		if (keyleft  && ctrl < 1) {
+			x-=5;
+			hero.style.left = x + "px";
+		}
+		if (keyvverh  && ctrl < 1) {
+			y-=5;
+			hero.style.top = y + "px";
+		}
+		if (keyvniz  && ctrl < 1) {
+			y+=5;
+			hero.style.top = y + "px";
+		}
+		requestAnimationFrame(geme);
+	}
+	requestAnimationFrame(geme)
+
+</script>
+</body>
+</html>
